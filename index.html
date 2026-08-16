@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Artist website administration dashboard.">
+  <title>Artist Admin</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="admin-header">
+    <div><p class="eyebrow">WEBSITE ADMIN</p><h1>Artist Admin</h1></div>
+    <button class="menu-button" id="menu-button" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </header>
+
+  <nav class="side-menu" id="side-menu" aria-label="Admin navigation">
+    <a href="#" data-page-link="dashboard">Dashboard</a>
+    <a href="#" data-page-link="paintings">Paintings</a>
+    <a href="#" data-page-link="news">News</a>
+    <a href="#" data-page-link="artist">Artist Details</a>
+    <a href="#" data-page-link="contact">Contact Details</a>
+    <a href="#" data-page-link="categories">Categories</a>
+  </nav>
+
+  <main class="admin-main">
+    <div class="prototype-notice"><strong>Prototype mode</strong><span>Data is currently stored only in this browser. Secure login and cloud data come next.</span></div>
+
+    <section class="admin-page active" data-page="dashboard">
+      <div class="page-heading"><p class="eyebrow">OVERVIEW</p><h2>Dashboard</h2><p>Quick access to the website content you manage most often.</p></div>
+      <div class="dashboard-grid">
+        <button class="dashboard-card dark" type="button" data-open-page="painting-form"><span class="card-kicker">PAINTINGS</span><strong>Add Painting</strong><span class="card-arrow">›</span></button>
+        <button class="dashboard-card" type="button" data-open-page="paintings"><span class="card-kicker">GALLERY</span><strong>Manage Paintings</strong><span class="card-arrow">›</span></button>
+        <button class="dashboard-card" type="button" data-open-page="news"><span class="card-kicker">UPDATES</span><strong>News</strong><span class="card-arrow">›</span></button>
+        <button class="dashboard-card" type="button" data-open-page="artist"><span class="card-kicker">PROFILE</span><strong>Artist Details</strong><span class="card-arrow">›</span></button>
+        <button class="dashboard-card" type="button" data-open-page="contact"><span class="card-kicker">CONTACT</span><strong>Contact Details</strong><span class="card-arrow">›</span></button>
+        <button class="dashboard-card" type="button" data-open-page="categories"><span class="card-kicker">SETUP</span><strong>Categories</strong><span class="card-arrow">›</span></button>
+      </div>
+    </section>
+
+    <section class="admin-page" data-page="paintings">
+      <div class="page-heading row-heading"><div><p class="eyebrow">GALLERY</p><h2>Paintings</h2><p>Manage all current and previous works.</p></div><button class="primary-button" type="button" data-open-page="painting-form">Add Painting</button></div>
+      <div class="filters">
+        <button class="filter-button active" data-status-filter="all">All</button>
+        <button class="filter-button" data-status-filter="for-sale">For Sale</button>
+        <button class="filter-button" data-status-filter="previous">Previous</button>
+        <button class="filter-button" data-status-filter="hidden">Hidden</button>
+      </div>
+      <div class="painting-list" id="painting-list"></div>
+    </section>
+
+    <section class="admin-page" data-page="painting-form">
+      <div class="page-heading"><button class="back-link" type="button" data-open-page="paintings">← Back to Paintings</button><p class="eyebrow">PAINTING DETAILS</p><h2 id="painting-form-title">Add Painting</h2></div>
+      <form class="admin-form" id="painting-form">
+        <input type="hidden" id="painting-id">
+        <div class="form-section">
+          <label class="field-label" for="painting-image">Painting Image</label>
+          <div class="image-picker">
+            <div class="image-preview" id="painting-image-preview"><span>No image selected</span></div>
+            <input type="file" id="painting-image" accept="image/*">
+            <p class="field-help">Prototype only: image is previewed locally and is not uploaded to the cloud yet.</p>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <label><span class="field-label">Title</span><input type="text" id="painting-title" required placeholder="Painting title"></label>
+          <label><span class="field-label">Category</span><select id="painting-category" required></select></label>
+          <label><span class="field-label">Price</span><input type="text" id="painting-price" placeholder="e.g. R4,500 or Price on request"></label>
+          <label><span class="field-label">Status</span><select id="painting-status"><option value="for-sale">For Sale</option><option value="previous">Previous</option><option value="hidden">Hidden</option></select></label>
+        </div>
+        <label><span class="field-label">Description</span><textarea id="painting-description" rows="6" placeholder="Describe the painting..."></textarea></label>
+        <div class="form-actions"><button class="secondary-button" type="button" data-open-page="paintings">Cancel</button><button class="primary-button" type="submit">Save Painting</button></div>
+      </form>
+    </section>
+
+    <section class="admin-page" data-page="news">
+      <div class="page-heading"><p class="eyebrow">NEWS & UPDATES</p><h2>News</h2><p>Manage the short homepage triggers and the full newsletter text.</p></div>
+      <form class="admin-form compact-form" id="news-form">
+        <input type="hidden" id="news-id">
+        <label><span class="field-label">Short Trigger / Title</span><input type="text" id="news-title" required placeholder="e.g. Check out my stall at NAMPO"></label>
+        <label><span class="field-label">Full News / Newsletter Text</span><textarea id="news-content" rows="7" required placeholder="Full announcement..."></textarea></label>
+        <label class="toggle-row"><input type="checkbox" id="news-visible" checked><span>Visible on website</span></label>
+        <div class="form-actions"><button class="secondary-button" type="button" id="news-reset">Clear</button><button class="primary-button" type="submit">Save News Item</button></div>
+      </form>
+      <div class="section-divider"></div>
+      <div class="news-list" id="news-list"></div>
+    </section>
+
+    <section class="admin-page" data-page="artist">
+      <div class="page-heading"><p class="eyebrow">PROFILE</p><h2>Artist Details</h2></div>
+      <form class="admin-form" id="artist-form">
+        <label><span class="field-label">Artist Name</span><input type="text" id="artist-name" placeholder="Artist name"></label>
+        <label><span class="field-label">About the Artist</span><textarea id="artist-about" rows="8" placeholder="Short artist biography..."></textarea></label>
+        <div class="form-section"><label class="field-label" for="hero-image">Hero Photo</label><div class="image-picker"><div class="image-preview hero-preview" id="hero-image-preview"><span>No image selected</span></div><input type="file" id="hero-image" accept="image/*"><p class="field-help">Cloud upload will be connected when Supabase is added.</p></div></div>
+        <div class="form-actions"><button class="primary-button" type="submit">Save Artist Details</button></div>
+      </form>
+    </section>
+
+    <section class="admin-page" data-page="contact">
+      <div class="page-heading"><p class="eyebrow">CONTACT</p><h2>Contact Details</h2></div>
+      <form class="admin-form" id="contact-form">
+        <label><span class="field-label">WhatsApp Number</span><input type="tel" id="contact-whatsapp" placeholder="e.g. 27821234567"><span class="field-help">Use the full international number without spaces or +.</span></label>
+        <label><span class="field-label">Email Address</span><input type="email" id="contact-email" placeholder="email@example.com"></label>
+        <div class="form-actions"><button class="primary-button" type="submit">Save Contact Details</button></div>
+      </form>
+    </section>
+
+    <section class="admin-page" data-page="categories">
+      <div class="page-heading"><p class="eyebrow">SETUP</p><h2>Categories</h2><p>Add or hide categories used by the painting form and public gallery filters.</p></div>
+      <form class="inline-form" id="category-form"><input type="text" id="category-name" required placeholder="New category name"><button class="primary-button" type="submit">Add Category</button></form>
+      <div class="category-list" id="category-list"></div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

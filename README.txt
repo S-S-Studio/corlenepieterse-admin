@@ -1,25 +1,12 @@
-CORLENE ARTIST ADMIN - V001
+CORLÉNE ADMIN V002 / PUBLIC V016 SETUP
 
-This is the first complete admin web app prototype.
+1. Create a free Supabase project.
+2. Run supabase_setup.sql in Supabase SQL Editor.
+3. Create the admin user in Supabase Authentication -> Users.
+4. Copy Project URL and anon/public key into supabase-config.js in BOTH admin and public site files.
+5. Deploy Admin V002 to the admin GitHub Pages repo.
+6. Upload Public V016 changed files over the public site.
 
-IMPORTANT:
-- This is not yet a secure live admin.
-- Test data is stored only in the current browser using localStorage.
-- Image selection is preview-only for now.
-- Do not treat this build as the final secure deployment.
-
-Included:
-- Dashboard
-- Paintings
-- Add/Edit Painting
-- News
-- Artist Details
-- Contact Details
-- Categories
-
-Next step after layout approval:
-- Supabase free-tier project
-- secure admin login
-- database tables
-- image storage
-- connect public website to live data
+Existing images remain on the current public website. New/replacement uploads go to Supabase Storage.
+Painting images always use full-image contain fitting and are never cropped.
+Delete is permanent with Yes/No confirmation.

@@ -77,3 +77,5 @@ drop policy if exists "public read website media" on storage.objects;create poli
 drop policy if exists "authenticated upload website media" on storage.objects;create policy "authenticated upload website media" on storage.objects for insert to authenticated with check(bucket_id in('paintings','site-media'));
 drop policy if exists "authenticated update website media" on storage.objects;create policy "authenticated update website media" on storage.objects for update to authenticated using(bucket_id in('paintings','site-media')) with check(bucket_id in('paintings','site-media'));
 drop policy if exists "authenticated delete website media" on storage.objects;create policy "authenticated delete website media" on storage.objects for delete to authenticated using(bucket_id in('paintings','site-media'));
+
+-- Multi-photo news support (Admin V006)
